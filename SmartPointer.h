@@ -45,6 +45,7 @@ SmartPointer<T>::~SmartPointer() {
 
 template <class T>
 T* SmartPointer<T>::operator=(T* _pointer) {
+	delete[] this->pointer;
 	return this->pointer = _pointer;
 }
 
