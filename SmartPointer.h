@@ -20,6 +20,7 @@ public:
 	T* operator=(T* _pointer);
 	T& operator*();
 	operator T*();
+	T* operator->();
 };
 
 template <class T>
@@ -56,6 +57,11 @@ SmartPointer<T>::SmartPointer(SmartPointer<T>& obj) {
 template <class T>
 T& SmartPointer<T>::operator*() {
 	return *(this->pointer);
+}
+
+template <class T>
+T* SmartPointer<T>::operator->() {
+	return this->pointer;
 }
 
 template <class T>
