@@ -14,7 +14,7 @@ class SmartPointer {
 	int callStackIndex;
 public:
 	SmartPointer();
-	SmartPointer(const T* _pointer);
+	SmartPointer(T* _pointer);
 	SmartPointer(const SmartPointer<T>& obj);
 	~SmartPointer();
 	bool operator==(T* _pointer);
@@ -31,7 +31,7 @@ SmartPointer<T>::SmartPointer() {
 }
 
 template <class T>
-SmartPointer<T>::SmartPointer(const T* _pointer) {
+SmartPointer<T>::SmartPointer(T* _pointer) {
 	this->pointer = _pointer;
 	this->callStackIndex = 0;
 }
