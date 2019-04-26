@@ -19,6 +19,7 @@ public:
 	~SmartPointer();
 	bool operator==(T* _pointer);
 	T* operator=(T* _pointer);
+	T& operator=(const SmartPointer<T>& obj);
 	T& operator*();
 	operator T*();
 	T* operator->();
@@ -45,7 +46,7 @@ SmartPointer<T>::SmartPointer(const SmartPointer<T>& obj) {
 template <class T>
 SmartPointer<T>::~SmartPointer() {
 	if (this->callStackIndex == 0 && this->pointer != NULL) {
-		delete[] this->pointer;
+		delete this->pointer;
 		this->pointer = NULL;
 	}
 }
@@ -57,8 +58,14 @@ bool SmartPointer<T>::operator==(T* _pointer) {
 
 template <class T>
 T* SmartPointer<T>::operator=(T* _pointer) {
-	delete[] this->pointer;
+	delete this->pointer;
 	return this->pointer = _pointer;
+}
+
+template <class T>
+T& operator=(const SmartPointer<T>& obj) {
+	this->pointer = obj.pointer;
+	this->callStackIndex = obj.callStackIndex + 1;
 }
 
 template <class T>
