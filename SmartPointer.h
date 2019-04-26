@@ -17,6 +17,7 @@ public:
 	SmartPointer(T* _pointer);
 	SmartPointer(SmartPointer<T>& obj);
 	~SmartPointer();
+	bool operator==(T* _pointer);
 	T* operator=(T* _pointer);
 	T& operator*();
 	operator T*();
@@ -41,6 +42,11 @@ SmartPointer<T>::~SmartPointer() {
 		delete[] this->pointer;
 		this->pointer = NULL;
 	}
+}
+
+template <class T>
+bool SmartPointer<T>::operator==(T* _pointer) {
+	return (this->pointer == _pointer);
 }
 
 template <class T>
